@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Call Scheduler+</string>
+    <string name="title_activity_scheduler">MainActivity</string>
+    <string name="title_home">Call Logs</string>
+    <string name="title_dashboard">New Appointment</string>
+    <string name="title_notifications">Settings</string>
+</resources>
