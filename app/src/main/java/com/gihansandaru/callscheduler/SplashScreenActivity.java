@@ -16,6 +16,7 @@ import androidx.core.app.ActivityCompat;
 public class SplashScreenActivity extends AppCompatActivity {
 
     private int REQUEST_READ_CONTACTS = 121;
+    private Handler handler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +39,8 @@ public class SplashScreenActivity extends AppCompatActivity {
     }
 
     private void startApp() {
-        new Handler().postDelayed(new Runnable() {
+        handler = new Handler();
+        handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 Intent i = new Intent(SplashScreenActivity.this, SchedulerActivity.class);

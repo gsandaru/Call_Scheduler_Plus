@@ -201,6 +201,13 @@ public class HomeFragment extends Fragment {
                 NavHostFragment.findNavController(HomeFragment.this)
                         .navigate(R.id.action_navigation_home_to_navigation_dashboard,bundle);
             });
+            holder.btnAddAppointment.setOnClickListener(v -> {
+                Bundle bundle = new Bundle();
+                bundle.putString("Number",callLogData.getNumber());
+                bundle.putString("Name",callLogData.getName());
+                NavHostFragment.findNavController(HomeFragment.this)
+                        .navigate(R.id.action_navigation_home_to_navigation_dashboard,bundle);
+            });
             holder.txtCallDuration.setText(getDurationString(Integer.parseInt(callLogData.getCallDuration())));
         }
 

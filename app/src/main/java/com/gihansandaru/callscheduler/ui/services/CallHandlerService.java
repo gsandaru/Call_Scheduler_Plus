@@ -38,7 +38,7 @@ public class CallHandlerService extends Service {
     public void onCreate() {
         super.onCreate();
         Log.i(TAG, "In onCreate");
-        Toast.makeText(this, "Service In onCreate.", Toast.LENGTH_LONG).show();
+//        Toast.makeText(this, "Service In onCreate.", Toast.LENGTH_LONG).show();
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.O)
             startMyOwnForeground();
         else
@@ -57,7 +57,7 @@ public class CallHandlerService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Toast.makeText(this, "Service destroyed by user.", Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, "Service destroyed by user.", Toast.LENGTH_LONG).show();
     }
 
     @Nullable
@@ -79,7 +79,7 @@ public class CallHandlerService extends Service {
                 AlarmManager.ELAPSED_REALTIME,
                 SystemClock.elapsedRealtime() + 1000,
                 restartServicePendingIntent);
-        Toast.makeText(this, "Service In onTaskRemoved.", Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, "Service In onTaskRemoved.", Toast.LENGTH_LONG).show();
     }
 
 

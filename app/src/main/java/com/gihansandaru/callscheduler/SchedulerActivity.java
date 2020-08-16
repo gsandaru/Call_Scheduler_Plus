@@ -13,6 +13,7 @@ import com.gihansandaru.callscheduler.ui.home.HomeFragment;
 import com.gihansandaru.callscheduler.ui.services.CallHandlerService;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -22,7 +23,10 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class SchedulerActivity extends AppCompatActivity {
@@ -59,6 +63,37 @@ public class SchedulerActivity extends AppCompatActivity {
                 .navigate(R.id.action_navigation_home_to_navigation_dashboard,bundle);
             }
         }
+
+
+        try {
+            String dateStr = "16/8/2020";
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            Date startday = sdf.parse(dateStr);
+            Date today = new Date();
+
+            int difference=
+                    ((int)((today.getTime()/(24*60*60*1000))
+                            -(int)(startday.getTime()/(24*60*60*1000))));
+
+            if(difference > 5) {
+                AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+                alertDialog.setTitle("Trial Mode Evaluated");
+                alertDialog.setCanceledOnTouchOutside(false);
+                alertDialog.setCancelable(false);
+                alertDialog.setMessage("Please contact developer");
+                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Exit",
+                        (dialog, which) -> {
+                            dialog.dismiss();
+                            finish();
+                        });
+                alertDialog.show();
+                return;
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
     }
 
 
