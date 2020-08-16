@@ -45,6 +45,8 @@ public class DashboardFragment extends Fragment {
     private TextInputEditText txtAreaDesc;
     private int savehour;
     private int saveminutes;
+    private DatePickerDialog datePickerDialog;
+    private TimePickerDialog mTimePicker;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -73,8 +75,12 @@ public class DashboardFragment extends Fragment {
         if (getArguments() != null) {
             String number = getArguments().getString("Number");
             String name = getArguments().getString("Name");
-            txtNumber.setText(number);
-            txtCustomerName.setText(name);
+            if (number != null && !number.equals("")) {
+                txtNumber.setText(number);
+            }
+            if (name != null && !name.equals("")) {
+                txtCustomerName.setText(name);
+            }
         }
 
         final Calendar myCalendar = Calendar.getInstance();
@@ -92,7 +98,7 @@ public class DashboardFragment extends Fragment {
                 e.printStackTrace();
             }
 
-            new DatePickerDialog(requireActivity(), (view1, year, month, dayOfMonth) -> {
+            datePickerDialog = new DatePickerDialog(requireActivity(), (view1, year, month, dayOfMonth) -> {
                 myCalendar.set(Calendar.YEAR, year);
                 myCalendar.set(Calendar.MONTH, month);
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
@@ -101,7 +107,8 @@ public class DashboardFragment extends Fragment {
                 txtReminderDate.setText(sdf.format(myCalendar.getTime()));
             }, myCalendar
                     .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                    myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+                    myCalendar.get(Calendar.DAY_OF_MONTH));
+            datePickerDialog.show();
         });
         txtReminderTime.setOnClickListener(v -> {
 
@@ -112,7 +119,6 @@ public class DashboardFragment extends Fragment {
             Calendar mcurrentTime = Calendar.getInstance();
             int Currenthour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
             int Currentminute = mcurrentTime.get(Calendar.MINUTE);
-            TimePickerDialog mTimePicker;
             mTimePicker = new TimePickerDialog(requireContext(), new TimePickerDialog.OnTimeSetListener() {
                 @Override
                 public void onTimeSet(TimePicker view, int hourOfDay, int minute) {

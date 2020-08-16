@@ -86,7 +86,7 @@ public class HomeFragment extends Fragment {
         callLogAdapter = new CallLogAdapter(new ArrayList<>());
         recyclerView.setAdapter(callLogAdapter);
         if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_CALL_LOG) != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions( //Method of Fragment
+            ActivityCompat.requestPermissions( requireActivity(),
                     new String[]{Manifest.permission.READ_CALL_LOG},
                     REQUEST_READ_CONTACTS
             );
@@ -112,7 +112,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-
+        switchHideKnownContacts.setChecked(false);
     }
 
     private void showCallDetails(List<CallLogData> newData) {
